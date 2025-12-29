@@ -121,21 +121,14 @@ The system simulates a financial market by:
 
 ```
 udp-packet-generator/
-├── hdl/
-│   ├── market_gen.v          # LFSR-based price generator
+├── rtl/
+│   ├── market_gen.v          # LFSR price generator
 │   ├── dsp_trader.v          # EMA trading algorithm
-│   └── trader_top.v          # Top-level wrapper with AXI-Stream
-├── tb/
-│   ├── tb_market_gen.sv      # Market generator testbench
-│   ├── tb_dsp_trader.sv      # Trading algorithm testbench
-│   └── tb_trader_top.sv      # Integration testbench
+│   └── trader_top.v          # Top-level integration, AXI-Stream output
 ├── sw/
-│   └── main.c                # Embedded C application
-├── ip/
-│   └── (Xilinx IP configurations)
-├── constraints/
-│   └── (XDC constraint files)
-└── README.md
+│   └── main.c                # ARM code (lwIP, FIFO read, UDP send)
+└── tb/
+    └── tb_market_gen.sv      # Market generator testbench
 ```
 
 ## Module Descriptions
